@@ -1,5 +1,5 @@
 {
-  "name": "zoo",
+  "name": "flowtomic",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,15 +10,21 @@
   "scripts": {
     "dev": "bun run --filter './packages/*' dev",
     "build": "bun run --filter './packages/*' build",
-    "build:ui": "bun run --filter @zoo/ui build",
-    "build:logic": "bun run --filter @zoo/logic build",
-    "build:cli": "bun run --filter @zoo/cli build",
-    "lint": "bun run --filter './packages/*' lint",
+    "build:ui": "bun run --filter flowtomic/ui build",
+    "build:logic": "bun run --filter flowtomic/logic build",
+    "build:cli": "bun run --filter flowtomic build",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "test": "bun test",
     "type-check": "bun run --filter './packages/*' type-check",
-    "clean": "bun run --filter './packages/*' clean && rm -rf node_modules"
+    "clean": "bun run --filter './packages/*' clean && rm -rf node_modules",
+    "registry:build": "bun run registry/build-registry.ts",
+    "registry:server": "bun run registry/server.ts"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.4",
     "@types/node": "^24.7.0",
     "typescript": "~5.9.3"
   },
@@ -26,4 +32,3 @@
     "bun": ">=1.0.0"
   }
 }
-

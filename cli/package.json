@@ -1,24 +1,29 @@
 {
-  "name": "@jaimejunior/zoo-cli",
+  "name": "flowtomic",
   "version": "0.1.0",
-  "description": "CLI para instalação de componentes e hooks do Zoo",
+  "description": "CLI para instalação de componentes, hooks e blocks do Flowtomic",
   "type": "module",
   "bin": {
-    "zoo": "./dist/cli.js",
-    "zoo-cli": "./dist/cli.js"
+    "flowtomic": "./dist/cli.js",
+    "flowtomic-cli": "./dist/cli.js"
   },
   "main": "./dist/cli.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JaimeJunr/Zoo.git"
+    "url": "https://github.com/JaimeJunr/Flowtomic.git"
   },
   "keywords": [
-    "zoo",
+    "flowtomic",
     "cli",
     "components",
     "ui",
     "react",
-    "typescript"
+    "typescript",
+    "shadcn",
+    "blocks",
+    "registry",
+    "atomic",
+    "flow"
   ],
   "author": "JaimeJunr",
   "license": "MIT",

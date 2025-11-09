@@ -1,0 +1,38 @@
+{
+  "buildCommand": "bun run registry:build",
+  "outputDirectory": "registry",
+  "rewrites": [
+    {
+      "source": "/all.json",
+      "destination": "/api/all.json"
+    },
+    {
+      "source": "/blocks.json",
+      "destination": "/api/blocks.json"
+    },
+    {
+      "source": "/components.json",
+      "destination": "/api/components.json"
+    },
+    {
+      "source": "/:name.json",
+      "destination": "/api/component.json?name=:name"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ]
+}
+

@@ -9,7 +9,7 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@zoo/logic/*": ["./src/*"]
+      "flowtomic/logic/*": ["./src/*"]
     },
     "skipLibCheck": true
   },

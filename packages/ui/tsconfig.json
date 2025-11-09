@@ -9,9 +9,9 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@zoo/ui/*": ["./src/*"],
-      "@zoo/logic": ["../logic/src"],
-      "@zoo/logic/*": ["../logic/src/*"]
+      "flowtomic/ui/*": ["./src/*"],
+      "flowtomic/logic": ["../logic/src"],
+      "flowtomic/logic/*": ["../logic/src/*"]
     },
     "skipLibCheck": true
   },
