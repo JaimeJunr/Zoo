@@ -1,5 +1,5 @@
 {
-  "name": "@zoo/cli",
+  "name": "@jaimejunior/zoo-cli",
   "version": "0.1.0",
   "description": "CLI para instalação de componentes e hooks do Zoo",
   "type": "module",
@@ -8,6 +8,20 @@
     "zoo-cli": "./dist/cli.js"
   },
   "main": "./dist/cli.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JaimeJunr/Zoo.git"
+  },
+  "keywords": [
+    "zoo",
+    "cli",
+    "components",
+    "ui",
+    "react",
+    "typescript"
+  ],
+  "author": "JaimeJunr",
+  "license": "MIT",
   "files": [
     "dist",
     "src"

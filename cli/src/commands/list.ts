@@ -48,6 +48,6 @@ export async function list() {
     console.log()
   }
 
-  console.log(chalk.yellow('💡 Use "bunx @zoo/cli add <nome>" para adicionar um componente'))
+  console.log(chalk.yellow('💡 Use "npx @jaimejunior/zoo-cli add <nome>" para adicionar um componente'))
 }
 

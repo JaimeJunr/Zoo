@@ -2,9 +2,11 @@
  * Utilitários para resolver o caminho do repositório Zoo
  */
 
-import { existsSync } from 'fs'
+import { existsSync, mkdirSync, rmSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { execSync } from 'child_process'
+import { tmpdir } from 'os'
 
 /**
  * Resolve o caminho do repositório Zoo
@@ -68,8 +70,90 @@ export function resolveZooRepo(): string | null {
     }
   }
 
+  // 4. Tentar baixar do GitHub (síncrono via execSync para manter compatibilidade)
+  try {
+    // Usar git clone que é mais confiável
+    const repoUrl = 'https://github.com/JaimeJunr/Zoo.git'
+    const cacheDir = join(tmpdir(), 'zoo-cli-cache')
+    const repoPath = join(cacheDir, 'Zoo')
+
+    // Se já existe e é válido, usar cache
+    if (existsSync(repoPath) && existsSync(join(repoPath, 'packages', 'ui'))) {
+      return repoPath
+    }
+
+    // Criar diretório de cache
+    if (!existsSync(cacheDir)) {
+      mkdirSync(cacheDir, { recursive: true })
+    }
+
+    // Limpar cache antigo se existir
+    if (existsSync(repoPath)) {
+      rmSync(repoPath, { recursive: true, force: true })
+    }
+
+    // Clonar repositório
+    console.log('📥 Baixando repositório Zoo do GitHub...')
+    execSync(`git clone --depth 1 ${repoUrl} "${repoPath}"`, {
+      stdio: 'pipe',
+      cwd: cacheDir,
+    })
+
+    // Verificar se foi clonado corretamente
+    if (existsSync(join(repoPath, 'packages', 'ui'))) {
+      return repoPath
+    }
+  } catch (error) {
+    // Se git clone falhar, tentar via tarball
+    try {
+      const repoUrl = 'https://github.com/JaimeJunr/Zoo.git'
+      const cacheDir = join(tmpdir(), 'zoo-cli-cache')
+      const repoPath = join(cacheDir, 'Zoo')
+      
+      if (existsSync(repoPath)) {
+        rmSync(repoPath, { recursive: true, force: true })
+      }
+      
+      const tarballUrl = 'https://github.com/JaimeJunr/Zoo/archive/refs/heads/main.tar.gz'
+      const tarballPath = join(cacheDir, 'zoo.tar.gz')
+      
+      // Baixar tarball usando curl (mais confiável que fetch em alguns ambientes)
+      execSync(`curl -L -f ${tarballUrl} -o "${tarballPath}"`, {
+        stdio: 'pipe',
+      })
+      
+      // Extrair
+      execSync(`tar -xzf "${tarballPath}" -C "${cacheDir}"`, {
+        stdio: 'pipe',
+      })
+      
+      // Renomear se necessário
+      const extractedPath = join(cacheDir, 'Zoo-main')
+      if (existsSync(extractedPath)) {
+        if (existsSync(repoPath)) {
+          rmSync(repoPath, { recursive: true, force: true })
+        }
+        execSync(`mv "${extractedPath}" "${repoPath}"`, {
+          stdio: 'pipe',
+        })
+      }
+      
+      // Limpar tarball
+      if (existsSync(tarballPath)) {
+        rmSync(tarballPath)
+      }
+      
+      if (existsSync(join(repoPath, 'packages', 'ui'))) {
+        return repoPath
+      }
+    } catch (tarballError) {
+      // Ignorar erros
+    }
+  }
+
   return null
 }
+
 
 /**
  * Resolve o caminho do componente no repositório

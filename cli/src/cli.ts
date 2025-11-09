@@ -1,14 +1,14 @@
 #!/usr/bin/env bun
 
 /**
- * @zoo/cli
+ * @jaimejunior/zoo-cli
  * 
  * CLI para instalação de componentes e hooks do Zoo
  * 
  * Uso:
- *   bunx github:seu-usuario/zoo/cli init
- *   bunx github:seu-usuario/zoo/cli add button
- *   bunx github:seu-usuario/zoo/cli list
+ *   npx @jaimejunior/zoo-cli init
+ *   npx @jaimejunior/zoo-cli add button
+ *   npx @jaimejunior/zoo-cli list
  */
 
 import { Command } from 'commander'

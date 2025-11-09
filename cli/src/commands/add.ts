@@ -28,7 +28,7 @@ export async function add(components: string[]) {
 
   if (!existsSync(configPath)) {
     console.log(chalk.red('❌ components.json não encontrado'))
-    console.log(chalk.yellow('💡 Execute "bunx @zoo/cli init" primeiro'))
+    console.log(chalk.yellow('💡 Execute "npx @jaimejunior/zoo-cli init" primeiro'))
     return
   }
 
@@ -93,7 +93,7 @@ async function addComponent(
 
   if (!component) {
     console.log(chalk.red(`❌ Componente "${componentName}" não encontrado`))
-    console.log(chalk.yellow('💡 Use "bunx @zoo/cli list" para ver componentes disponíveis'))
+    console.log(chalk.yellow('💡 Use "npx @jaimejunior/zoo-cli list" para ver componentes disponíveis'))
     return
   }
 
