@@ -1,0 +1,53 @@
+/**
+ * Comando list - Lista componentes e hooks disponíveis
+ */
+
+import chalk from 'chalk'
+import { listComponents, listHooks } from '../utils/component-map'
+
+export async function list() {
+  const components = listComponents()
+  const hooks = listHooks()
+
+  console.log(chalk.blue('\n📦 Componentes UI disponíveis:\n'))
+  
+  // Agrupar por tipo
+  const atoms = components.filter(c => c.type === 'atom')
+  const molecules = components.filter(c => c.type === 'molecule')
+  const organisms = components.filter(c => c.type === 'organism')
+
+  if (atoms.length > 0) {
+    console.log(chalk.bold('  Atoms:'))
+    atoms.forEach(c => {
+      console.log(chalk.gray(`    - ${c.name}`))
+    })
+    console.log()
+  }
+
+  if (molecules.length > 0) {
+    console.log(chalk.bold('  Molecules:'))
+    molecules.forEach(c => {
+      console.log(chalk.gray(`    - ${c.name}`))
+    })
+    console.log()
+  }
+
+  if (organisms.length > 0) {
+    console.log(chalk.bold('  Organisms:'))
+    organisms.forEach(c => {
+      console.log(chalk.gray(`    - ${c.name}`))
+    })
+    console.log()
+  }
+
+  if (hooks.length > 0) {
+    console.log(chalk.blue('🪝 Hooks disponíveis:\n'))
+    hooks.forEach(h => {
+      console.log(chalk.gray(`    - ${h.name}`))
+    })
+    console.log()
+  }
+
+  console.log(chalk.yellow('💡 Use "bunx @zoo/cli add <nome>" para adicionar um componente'))
+}
+

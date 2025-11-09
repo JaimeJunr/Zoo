@@ -1,0 +1,9 @@
+# Configuração do Bun para o monorepo Zoo
+
+[install]
+# Usar workspaces
+workspace = true
+
+# Cache de dependências
+cache = true
+

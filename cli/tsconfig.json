@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "ESNext",
+    "target": "ES2022",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@zoo/cli/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}

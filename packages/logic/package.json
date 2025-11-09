@@ -1,0 +1,40 @@
+{
+  "name": "@zoo/logic",
+  "version": "0.1.0",
+  "description": "Hooks headless e lógica reutilizável para React",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./hooks/*": {
+      "import": "./dist/hooks/*/index.js",
+      "types": "./dist/hooks/*/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist --target browser --format esm --minify",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.16",
+    "react": "^19.1.1",
+    "typescript": "~5.9.3"
+  }
+}
+

@@ -1,0 +1,29 @@
+{
+  "name": "zoo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "cli"
+  ],
+  "scripts": {
+    "dev": "bun run --filter './packages/*' dev",
+    "build": "bun run --filter './packages/*' build",
+    "build:ui": "bun run --filter @zoo/ui build",
+    "build:logic": "bun run --filter @zoo/logic build",
+    "build:cli": "bun run --filter @zoo/cli build",
+    "lint": "bun run --filter './packages/*' lint",
+    "test": "bun test",
+    "type-check": "bun run --filter './packages/*' type-check",
+    "clean": "bun run --filter './packages/*' clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "typescript": "~5.9.3"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
+

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "paths": {
+      "@zoo/ui": ["./packages/ui/src"],
+      "@zoo/logic": ["./packages/logic/src"],
+      "@zoo/cli": ["./cli/src"]
+    }
+  },
+  "include": [],
+  "exclude": ["node_modules", "dist", "build"]
+}

@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "../..",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@zoo/ui/*": ["./src/*"],
+      "@zoo/logic": ["../logic/src"],
+      "@zoo/logic/*": ["../logic/src/*"]
+    },
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "../logic/src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    ".storybook"
+  ]
+}
