@@ -1,4 +1,4 @@
-# @zoo/cli
+# @jaimejunior/zoo-cli
 
 CLI para instalação de componentes e hooks do Zoo em projetos.
 
@@ -8,7 +8,7 @@ CLI para instalação de componentes e hooks do Zoo em projetos.
 
 ```bash
 # Inicializar configuração
-bunx github:seu-usuario/zoo/cli init
+bunx github:JaimeJunr/Zoo/cli init
 
 # Ou se o repositório for privado/local
 bunx /caminho/para/zoo/cli init
@@ -17,7 +17,7 @@ bunx /caminho/para/zoo/cli init
 ### Via npx (se publicado no npm)
 
 ```bash
-npx @zoo/cli init
+npx @jaimejunior/zoo-cli init
 ```
 
 ## Comandos
@@ -27,7 +27,7 @@ npx @zoo/cli init
 Inicializa a configuração do Zoo no projeto, criando o arquivo `components.json`.
 
 ```bash
-bunx github:seu-usuario/zoo/cli init
+bunx github:JaimeJunr/Zoo/cli init
 ```
 
 ### `add`
@@ -36,13 +36,13 @@ Adiciona componentes ou hooks ao projeto. Os arquivos são copiados diretamente 
 
 ```bash
 # Adicionar um componente específico
-bunx github:seu-usuario/zoo/cli add button
+bunx github:JaimeJunr/Zoo/cli add button
 
 # Adicionar múltiplos componentes
-bunx github:seu-usuario/zoo/cli add button card input
+bunx github:JaimeJunr/Zoo/cli add button card input
 
 # Modo interativo (sem especificar componentes)
-bunx github:seu-usuario/zoo/cli add
+bunx github:JaimeJunr/Zoo/cli add
 ```
 
 ### `list`
@@ -50,7 +50,7 @@ bunx github:seu-usuario/zoo/cli add
 Lista todos os componentes e hooks disponíveis.
 
 ```bash
-bunx github:seu-usuario/zoo/cli list
+bunx github:JaimeJunr/Zoo/cli list
 ```
 
 ## Como Funciona
@@ -65,7 +65,7 @@ O CLI tenta encontrar o repositório Zoo de várias formas:
 
    ```bash
    export ZOO_REPO_PATH=/caminho/para/zoo
-   bunx github:seu-usuario/zoo/cli add button
+   bunx github:JaimeJunr/Zoo/cli add button
    ```
 
 2. **Caminho relativo** (se executado do repositório)
@@ -145,10 +145,10 @@ O comando `init` cria um arquivo `components.json` na raiz do projeto:
 
 ```bash
 # 1. Inicializar
-bunx github:seu-usuario/zoo/cli init
+bunx github:JaimeJunr/Zoo/cli init
 
 # 2. Adicionar componentes
-bunx github:seu-usuario/zoo/cli add button card input
+bunx github:JaimeJunr/Zoo/cli add button card input
 
 # 3. Usar no projeto
 import { Button } from '@/components/ui/button'

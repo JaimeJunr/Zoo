@@ -9,32 +9,41 @@ zoo/
 ├── packages/
 │   ├── ui/          # Componentes UI (@zoo/ui)
 │   └── logic/       # Hooks e lógica (@zoo/logic)
-└── cli/             # CLI para instalação (@zoo/cli)
+└── cli/             # CLI para instalação (@jaimejunior/zoo-cli)
 ```
 
 ## 🚀 Instalação via CLI
 
-### Usar via GitHub (sem publicar no npm)
+### Via npm (Recomendado)
 
 ```bash
 # Inicializar configuração
-bunx github:seu-usuario/zoo/cli init
+npx @jaimejunior/zoo-cli init
+# ou
+bunx @jaimejunior/zoo-cli init
 
 # Adicionar componentes
-bunx github:seu-usuario/zoo/cli add button card input
+npx @jaimejunior/zoo-cli add button card input
+# ou
+bunx @jaimejunior/zoo-cli add button card input
 
 # Listar componentes disponíveis
-bunx github:seu-usuario/zoo/cli list
+npx @jaimejunior/zoo-cli list
+# ou
+bunx @jaimejunior/zoo-cli list
 ```
 
-### Configurar Variável de Ambiente (Opcional)
-
-Para facilitar, defina a variável de ambiente:
+### Via GitHub (Desenvolvimento)
 
 ```bash
-export ZOO_REPO_PATH=/caminho/para/zoo
-bunx github:seu-usuario/zoo/cli add button
+# Inicializar configuração
+bunx github:JaimeJunr/Zoo/cli init
+
+# Adicionar componentes
+bunx github:JaimeJunr/Zoo/cli add button card input
 ```
+
+**Nota:** O CLI automaticamente baixa o repositório do GitHub quando necessário.
 
 ## 📚 Componentes Disponíveis
 
@@ -123,10 +132,14 @@ O CLI copia os arquivos dos componentes diretamente para o seu projeto (similar 
 
 ```bash
 # 1. Inicializar
-bunx github:seu-usuario/zoo/cli init
+npx @jaimejunior/zoo-cli init
+# ou
+bunx @jaimejunior/zoo-cli init
 
 # 2. Adicionar componentes
-bunx github:seu-usuario/zoo/cli add button card input
+npx @jaimejunior/zoo-cli add button card input
+# ou
+bunx @jaimejunior/zoo-cli add button card input
 
 # 3. Usar no projeto
 ```

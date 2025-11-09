@@ -13,7 +13,7 @@ O **Zoo** é um sistema de design system modular que fornece:
 
 ```bash
 # Inicializar configuração do projeto
-bunx github:seu-usuario/zoo/cli init
+bunx github:JaimeJunr/Zoo/cli init
 ```
 
 Isso cria o arquivo `components.json` na raiz do projeto.
@@ -22,20 +22,20 @@ Isso cria o arquivo `components.json` na raiz do projeto.
 
 ```bash
 # Adicionar um componente
-bunx github:seu-usuario/zoo/cli add button
+bunx github:JaimeJunr/Zoo/cli add button
 
 # Adicionar múltiplos componentes
-bunx github:seu-usuario/zoo/cli add button card input badge
+bunx github:JaimeJunr/Zoo/cli add button card input badge
 
 # Listar componentes disponíveis
-bunx github:seu-usuario/zoo/cli list
+bunx github:JaimeJunr/Zoo/cli list
 ```
 
 ### Adicionar Hooks
 
 ```bash
 # Adicionar um hook
-bunx github:seu-usuario/zoo/cli add use-stat-card
+bunx github:JaimeJunr/Zoo/cli add use-stat-card
 ```
 
 ## Como Funciona
@@ -98,7 +98,7 @@ Hooks que fornecem apenas lógica, sem UI:
 
 ## Uso dos Componentes
 
-### Importação
+### Importação de Componentes
 
 Após instalar via CLI, os componentes são copiados para o seu projeto:
 
@@ -109,7 +109,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 ```
 
-### Exemplo de Uso
+### Exemplo de Uso de Componentes
 
 ```typescript
 import { Button } from "@/components/ui/button";
@@ -135,14 +135,14 @@ function MyComponent() {
 
 ## Uso dos Hooks
 
-### Importação
+### Importação de Hooks
 
 ```typescript
 // Hooks são importados dos caminhos locais
 import { useStatCard } from "@/hooks/use-stat-card";
 ```
 
-### Exemplo de Uso
+### Exemplo de Uso de Hooks
 
 ```typescript
 import { useStatCard } from "@/hooks/use-stat-card";
@@ -214,7 +214,7 @@ Os componentes podem requerer:
 ### Erro: "components.json não encontrado"
 
 ```bash
-bunx github:seu-usuario/zoo/cli init
+bunx github:JaimeJunr/Zoo/cli init
 ```
 
 ### Erro: "Não foi possível encontrar o repositório Zoo"
@@ -222,14 +222,14 @@ bunx github:seu-usuario/zoo/cli init
 ```bash
 # Definir variável de ambiente
 export ZOO_REPO_PATH=/caminho/para/zoo
-bunx github:seu-usuario/zoo/cli add button
+bunx github:JaimeJunr/Zoo/cli add button
 ```
 
 ### Erro: "Componente não encontrado"
 
 ```bash
 # Ver lista de componentes disponíveis
-bunx github:seu-usuario/zoo/cli list
+bunx github:JaimeJunr/Zoo/cli list
 ```
 
 ## Quando Usar Cada Tipo
