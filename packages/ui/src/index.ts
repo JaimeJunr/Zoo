@@ -1,5 +1,5 @@
 /**
- * @zoo/ui
+ * flowtomic/ui
  * 
  * Biblioteca de componentes UI reutilizáveis
  * baseados em Radix UI e Tailwind CSS

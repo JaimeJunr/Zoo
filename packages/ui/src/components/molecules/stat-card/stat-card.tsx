@@ -32,7 +32,7 @@ import {
   Pin,
 } from "lucide-react"
 import { cn } from "../../../lib/utils"
-import { useStatCard, type StatCardData } from "@zoo/logic/hooks/useStatCard"
+import { useStatCard, type StatCardData } from "flowtomic/logic/hooks/useStatCard"
 
 export interface StatCardProps extends Omit<StatCardData, 'value'> {
   /**

@@ -1,0 +1,22 @@
+{
+  "blocks": [
+    {
+      "name": "dashboard-01",
+      "author": "flowtomic (https://flowtomic.dev)",
+      "title": "Dashboard",
+      "description": "Um dashboard simples com cards usando componentes do Flowtomic.",
+      "type": "registry:block",
+      "registryDependencies": ["card", "button"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "blocks/dashboard-01/page.tsx",
+          "type": "registry:page",
+          "target": "app/dashboard/page.tsx"
+        }
+      ],
+      "categories": ["dashboard"]
+    }
+  ]
+}
+

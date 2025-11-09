@@ -1,5 +1,5 @@
 /**
- * @zoo/logic
+ * flowtomic/logic
  * 
  * Biblioteca de hooks headless e lógica reutilizável
  * para projetos React/TypeScript
