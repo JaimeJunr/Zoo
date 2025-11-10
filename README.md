@@ -1,6 +1,28 @@
 # ⚛️ Flowtomic Monorepo
 
-Biblioteca de componentes UI e hooks reutilizáveis para projetos React/TypeScript.
+Biblioteca de componentes UI, hooks headless e ferramentas reutilizáveis para projetos React/TypeScript.
+
+## 🎯 Nossa Filosofia
+
+No desenvolvimento de software, frequentemente nos deparamos com a repetição das mesmas lógicas, principalmente em projetos grandes. A engenharia de software desenvolveu paradigmas como a **Programação Orientada a Objetos (POO)** para modelar sistemas com base em entidades do mundo real, promovendo encapsulamento, abstração e reutilização. Posteriormente, surgiram princípios gerais como **Don't Repeat Yourself (DRY)** e, dentro do paradigma OO, os princípios **SOLID** (formulados por Robert C. Martin) como boas práticas.
+
+O ambiente frontend, por sua vez, ainda está se desenvolvendo nessa questão. Daí nasce o **Flowtomic**: uma solução reutilizável com componentes prontos ou customizáveis para acelerar seu desenvolvimento, seguindo as melhores práticas de engenharia de software.
+
+## 🙏 Agradecimentos
+
+O Flowtomic é construído sobre os ombros de projetos incríveis da comunidade open source:
+
+- **[Radix UI](https://www.radix-ui.com/)** - Componentes primitivos acessíveis e sem estilização
+- **[TanStack Table](https://tanstack.com/table)** - Tabelas poderosas e flexíveis para React
+- **[shadcn/ui](https://ui.shadcn.com/)** - Inspiração e padrões de design para componentes
+- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utilitário
+- **[class-variance-authority](https://cva.style/)** - Gerenciamento de variantes de componentes
+- **[Lucide React](https://lucide.dev/)** - Biblioteca de ícones
+- **[Sonner](https://sonner.emilkowal.ski/)** - Sistema de notificações toast
+- **[Bun](https://bun.sh/)** - Runtime JavaScript rápido e moderno
+- **[Biome](https://biomejs.dev/)** - Linter e formatter rápido
+- **[Turbo](https://turbo.build/)** - Build system para monorepos
+- **[Storybook](https://storybook.js.org/)** - Ambiente de desenvolvimento de componentes
 
 ## 📦 Estrutura
 
@@ -8,8 +30,22 @@ Biblioteca de componentes UI e hooks reutilizáveis para projetos React/TypeScri
 flowtomic/
 ├── packages/
 │   ├── ui/          # Componentes UI (flowtomic/ui)
+│   │   ├── src/
+│   │   │   ├── components/  # Atoms, Molecules, Organisms
+│   │   │   └── blocks/      # Blocks pré-construídos
+│   │   └── dist/            # Build output
 │   └── logic/       # Hooks e lógica (flowtomic/logic)
-└── cli/             # CLI para instalação (flowtomic)
+│       ├── src/
+│       │   └── hooks/       # Hooks headless
+│       └── dist/            # Build output
+├── cli/             # CLI para instalação (flowtomic)
+│   ├── src/
+│   │   ├── commands/        # Comandos CLI
+│   │   └── utils/           # Utilitários
+│   └── dist/                # Build output
+├── registry/        # Registry para componentes e blocks
+├── docs/            # Documentação do projeto
+└── .storybook/      # Configuração do Storybook
 ```
 
 ## 🚀 Instalação via CLI
@@ -116,22 +152,41 @@ bun run build:cli
 # Type check
 bun run type-check
 
-# Servidor do registry (para desenvolvimento)
-bun run registry:server
+# Linting e formatação
+bun run lint              # Verificar lint
+bun run lint:fix          # Corrigir problemas de lint
+bun run format             # Formatar código
+bun run format:check       # Verificar formatação
+bun run fix:all            # Corrigir lint e formatar tudo
+
+# Testes
+bun run test
+
+# Storybook
+bun run storybook          # Iniciar Storybook
+bun run build-storybook    # Build do Storybook
+
+# Registry
+bun run registry:build     # Build do registry
+bun run registry:server    # Servidor do registry (desenvolvimento)
+
+# Limpeza
+bun run clean              # Limpar builds e node_modules
 ```
 
 ### CLI
 
 ```bash
 cd cli
-bun run dev      # Modo desenvolvimento
-bun run build    # Build
-bun run type-check
+bun run dev          # Modo desenvolvimento
+bun run build        # Build
+bun run type-check   # Verificar tipos
 ```
 
 ## 📖 Documentação
 
-- [docs/USAGE.md](./docs/USAGE.md) - Guia completo de uso do monorepo e CLI
+- [📚 Índice de Documentação](./docs/INDEX.md) - Guia central de toda a documentação
+- [Guia de Desenvolvimento](./docs/desenvolvimento/guia.md) - Guia completo de uso do monorepo e CLI
 - [cli/README.md](./cli/README.md) - Documentação detalhada do CLI
 
 ## 🎯 Como Funciona
@@ -177,8 +232,8 @@ npx shadcn@latest add https://registry.flowtomic.dev/all.json
 ## 🔗 Links
 
 - [Documentação do CLI](./cli/README.md)
-- [Guia de Uso Completo](./docs/USAGE.md)
-- [Guia de Deploy](./docs/DEPLOYMENT.md)
+- [Guia de Desenvolvimento](./docs/desenvolvimento/guia.md)
+- [Guia de Deploy](./docs/deploy/DEPLOYMENT.md)
 - [Registry](./registry/README.md)
 
 ## 📦 Publicação
@@ -202,4 +257,8 @@ O registry está disponível em `https://registry.flowtomic.dev`:
 npx shadcn@latest add https://registry.flowtomic.dev/all.json
 ```
 
-Para mais informações sobre publicação e deploy, veja [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
+Para mais informações sobre publicação e deploy, veja [docs/deploy/DEPLOYMENT.md](./docs/deploy/DEPLOYMENT.md).
+
+---
+
+Desenvolvido com ❤️ e ☕ por [JaimeJunr](https://github.com/JaimeJunr)

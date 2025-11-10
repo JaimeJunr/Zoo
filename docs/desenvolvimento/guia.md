@@ -1,8 +1,10 @@
-# 🦁 Guia de Uso do Flowtomic
+# ⚛️ Guia de Desenvolvimento do Flowtomic
+
+> **Objetivo**: Guia completo para desenvolvimento no monorepo Flowtomic, incluindo estrutura, comandos e boas práticas.
 
 ## 📦 Estrutura do Monorepo
 
-```
+```text
 flowtomic/
 ├── packages/
 │   ├── ui/          # flowtomic/ui - Componentes visuais
@@ -52,42 +54,86 @@ bun run type-check
 
 ## 📝 Adicionar Novo Componente UI
 
-1. Criar estrutura em `packages/ui/src/components/button/`:
+### Checklist Obrigatório
+
+- [ ] **SEMPRE crie** estrutura de pastas adequada
+- [ ] **SEMPRE crie** arquivo principal do componente
+- [ ] **SEMPRE crie** arquivo `index.ts` para barrel export
+- [ ] **SEMPRE crie** arquivo `*.stories.tsx` para Storybook
+- [ ] **SEMPRE exporte** em `packages/ui/src/index.ts`
+- [ ] **SEMPRE atualize** `component-map.ts` no CLI
+
+### Passos Detalhados
+
+1. **SEMPRE crie** estrutura em `packages/ui/src/components/button/`:
 
 ```bash
 mkdir -p packages/ui/src/components/button
 ```
 
-2. Criar arquivos:
+2. **SEMPRE crie** arquivos obrigatórios:
 
-   - `button.tsx` - Componente
+   - `button.tsx` - Componente principal
+   - `button.stories.tsx` - Story para Storybook (OBRIGATÓRIO)
    - `index.ts` - Barrel export
 
-3. Exportar em `packages/ui/src/index.ts`:
+3. **SEMPRE exporte** em `packages/ui/src/index.ts`:
 
-```ts
+```typescript
 export { Button, buttonVariants } from "./components/button";
 export type { ButtonProps } from "./components/button";
 ```
 
+4. **SEMPRE atualize** `cli/src/utils/component-map.ts`:
+
+```typescript
+{
+  name: "button",
+  type: "atom",
+  dependencies: ["@radix-ui/react-slot", "class-variance-authority"]
+}
+```
+
 ## 🎣 Adicionar Novo Hook
 
-1. Criar estrutura em `packages/logic/src/hooks/useThemeToggle/`:
+### Checklist Obrigatório
+
+- [ ] **SEMPRE crie** estrutura de pastas adequada
+- [ ] **SEMPRE crie** arquivo principal do hook
+- [ ] **SEMPRE crie** arquivo `index.ts` para barrel export
+- [ ] **SEMPRE crie** arquivo `*.stories.tsx` para Storybook (com componente wrapper)
+- [ ] **SEMPRE exporte** em `packages/logic/src/index.ts`
+- [ ] **SEMPRE atualize** `component-map.ts` no CLI
+
+### Passos Detalhados
+
+1. **SEMPRE crie** estrutura em `packages/logic/src/hooks/useThemeToggle/`:
 
 ```bash
 mkdir -p packages/logic/src/hooks/useThemeToggle
 ```
 
-2. Criar arquivos:
+2. **SEMPRE crie** arquivos obrigatórios:
 
-   - `useThemeToggle.ts` - Hook
+   - `useThemeToggle.ts` - Hook principal
+   - `useThemeToggle.stories.tsx` - Story para Storybook (OBRIGATÓRIO)
    - `index.ts` - Barrel export
 
-3. Exportar em `packages/logic/src/index.ts`:
+3. **SEMPRE exporte** em `packages/logic/src/index.ts`:
 
-```ts
+```typescript
 export { useThemeToggle } from "./hooks/useThemeToggle";
 export type { UseThemeToggleReturn } from "./hooks/useThemeToggle";
+```
+
+4. **SEMPRE atualize** `cli/src/utils/component-map.ts`:
+
+```typescript
+{
+  name: "use-theme-toggle",
+  type: "hook",
+  dependencies: []
+}
 ```
 
 ## 🔧 Usar em Projeto
@@ -322,32 +368,62 @@ function MyComponent() {
 
 #### 🐛 Troubleshooting
 
-**Erro: "components.json não encontrado"**
+### Problemas Comuns
+
+- **Erro: "components.json não encontrado"**
+
+  - **Solução**: **SEMPRE execute** `npx flowtomic init` ou `bunx flowtomic init` primeiro
+
+- **Erro: "Não foi possível encontrar o repositório Flowtomic"**
+
+  - **Solução**: **SEMPRE defina** a variável de ambiente `FLOWTOMIC_REPO_PATH` ou use caminho local
+
+- **Erro: "Componente não encontrado"**
+
+  - **Solução**: **SEMPRE verifique** a lista de componentes disponíveis com `npx flowtomic list`
+
+- **Erro: "Imports não estão funcionando"**
+
+  - **Solução**: **SEMPRE verifique** se os aliases no `components.json` estão corretos
+
+- **Erro: "Storybook não encontra componente"**
+  - **Solução**: **SEMPRE crie** arquivo `*.stories.tsx` na mesma pasta do componente/hook
+
+### Soluções Detalhadas
+
+#### Erro: "components.json não encontrado"
 
 ```bash
+# SEMPRE execute init primeiro
 npx flowtomic init
 # ou
 bunx flowtomic init
 ```
 
-**Erro: "Não foi possível encontrar o repositório Flowtomic"**
+#### Erro: "Não foi possível encontrar o repositório Flowtomic"
 
 ```bash
-# Definir variável de ambiente
+# SEMPRE defina variável de ambiente
 export FLOWTOMIC_REPO_PATH=/caminho/para/flowtomic
 npx flowtomic add button
 # ou
 bunx flowtomic add button
 ```
 
-**Erro: "Componente não encontrado"**
+#### Erro: "Componente não encontrado"
 
 ```bash
-# Ver lista de componentes disponíveis
+# SEMPRE verifique lista de componentes disponíveis
 npx flowtomic list
 # ou
 bunx flowtomic list
 ```
+
+#### Erro: "Storybook não encontra componente"
+
+- [ ] **SEMPRE verifique** se o arquivo `*.stories.tsx` existe
+- [ ] **SEMPRE verifique** se o caminho do import está correto
+- [ ] **SEMPRE verifique** se o componente está exportado corretamente
 
 #### 🔗 Próximos Passos
 
@@ -384,10 +460,26 @@ bun test packages/logic
 
 ## 📋 Checklist para Novo Componente/Hook
 
-- [ ] Criar estrutura de pastas
-- [ ] Implementar componente/hook
-- [ ] Adicionar tipos TypeScript
-- [ ] Exportar em `index.ts` do package
-- [ ] Criar testes (opcional)
+### Checklist Obrigatório
+
+- [ ] **SEMPRE crie** estrutura de pastas adequada
+- [ ] **SEMPRE implemente** componente/hook com TypeScript
+- [ ] **SEMPRE adicione** tipos TypeScript exportados
+- [ ] **SEMPRE crie** arquivo `index.ts` para barrel export
+- [ ] **SEMPRE crie** arquivo `*.stories.tsx` para Storybook (OBRIGATÓRIO)
+- [ ] **SEMPRE exporte** em `index.ts` do package
+- [ ] **SEMPRE atualize** `component-map.ts` no CLI
+- [ ] **SEMPRE atualize** documentação principal
+
+### Checklist Opcional (Recomendado)
+
+- [ ] Criar testes unitários
 - [ ] Documentar no README do package
-- [ ] Atualizar documentação principal
+- [ ] Adicionar exemplos de uso
+- [ ] Verificar acessibilidade (para componentes UI)
+
+## 📅 Atualizações
+
+- **Última atualização**: 2025-11-09
+- **Versão do guia**: 1.1.0
+- **Próxima revisão**: 2025-12-09

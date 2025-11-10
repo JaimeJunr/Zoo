@@ -34,7 +34,7 @@ npm publish
 
 ### 3. Documentação
 
-- ✅ `docs/DEPLOYMENT.md` - Guia completo de deploy
+- ✅ `docs/deploy/DEPLOYMENT.md` - Guia completo de deploy
 - ✅ `registry/README.md` - Documentação do registry
 - ✅ README.md atualizado com seção de publicação
 
