@@ -6,6 +6,7 @@ node_modules/
 # Build outputs
 dist/
 build/
+storybook-static/
 *.tsbuildinfo
 
 # Environment
@@ -39,6 +40,11 @@ coverage/
 # Temporary files
 *.tmp
 .cache/
+testes-aceitacao-storybook-resultados.md
+@/
+
+# Turborepo
+.turbo/
 
 .cursor/
 

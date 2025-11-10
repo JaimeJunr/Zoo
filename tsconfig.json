@@ -9,6 +9,7 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -16,12 +17,15 @@
     "declaration": true,
     "declarationMap": true,
     "composite": true,
+    "incremental": true,
     "paths": {
-      "@zoo/ui": ["./packages/ui/src"],
-      "@zoo/logic": ["./packages/logic/src"],
-      "@zoo/cli": ["./cli/src"]
+      "@flowtomic/ui": ["./packages/ui/src"],
+      "@flowtomic/logic": ["./packages/logic/src"],
+      "@flowtomic/cli": ["./cli/src"]
     }
   },
+  "files": [],
   "include": [],
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": ["node_modules", "dist", "build", "**/*.tsbuildinfo"],
+  "references": [{ "path": "./packages/ui" }, { "path": "./packages/logic" }, { "path": "./cli" }]
 }
