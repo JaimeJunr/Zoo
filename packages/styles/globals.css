@@ -106,32 +106,42 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary Colors */
-    --primary: 239 84% 67%;
-    --primary-foreground: 210 40% 98%;
-    --primary-hover: 239 73% 60%;
+    /* Primary Colors - Purple */
+    --primary: 262 85% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 265 73% 50%;
 
-    /* Secondary Colors */
-    --secondary: 239 84% 77%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --secondary-hover: 239 73% 70%;
+    /* Secondary Colors - Purple */
+    --secondary: 258 90% 66%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 262 85% 58%;
 
-    /* Accent Colors */
-    --accent: 217 91% 60%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --accent-hover: 217 91% 50%;
+    /* Accent Colors - Purple */
+    --accent: 252 94% 76%;
+    --accent-foreground: 262 85% 58%;
+    --accent-hover: 258 90% 66%;
 
-    /* Success Colors */
-    --success: 160 84% 39%;
-    --success-foreground: 210 40% 98%;
-    --success-hover: 160 84% 32%;
+    /* Success Colors - Verde com melhor contraste */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-hover: 142 76% 30%;
 
-    /* Error/Destructive Colors */
+    /* Warning Colors - Amarelo com melhor contraste */
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 20%;
+    --warning-hover: 38 92% 45%;
+
+    /* Info Colors - Azul com melhor contraste */
+    --info: 217 91% 50%;
+    --info-foreground: 217 91% 20%;
+    --info-hover: 217 91% 45%;
+
+    /* Error/Destructive Colors - Vermelho para erros e ações destrutivas */
     --error: 0 84% 60%;
-    --error-foreground: 210 40% 98%;
+    --error-foreground: 0 84% 20%;
     --error-hover: 0 84% 50%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 84% 20%;
 
     /* Muted Colors */
     --muted: 210 40% 96%;
@@ -142,8 +152,8 @@
     --border-hover: 213 31% 82%;
     --input: 214.3 31.8% 91.4%;
 
-    /* Ring (Focus) */
-    --ring: 239 84% 67%;
+    /* Ring (Focus) - Purple */
+    --ring: 262 85% 58%;
 
     /* Radius */
     --radius: 0.75rem;
@@ -196,32 +206,42 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    /* Primary Colors */
-    --primary: 239 84% 77%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --primary-hover: 239 84% 85%;
+    /* Primary Colors - Purple */
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 262 85% 58%;
 
-    /* Secondary Colors */
-    --secondary: 239 84% 85%;
-    --secondary-foreground: 210 40% 98%;
-    --secondary-hover: 239 84% 90%;
+    /* Secondary Colors - Purple */
+    --secondary: 252 94% 76%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 258 90% 66%;
 
-    /* Accent Colors */
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
-    --accent-hover: 217 91% 70%;
+    /* Accent Colors - Purple */
+    --accent: 248 95% 85%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 252 94% 76%;
 
-    /* Success Colors */
-    --success: 160 84% 50%;
-    --success-foreground: 222.2 84% 4.9%;
-    --success-hover: 160 84% 60%;
+    /* Success Colors - Verde com melhor contraste para dark mode */
+    --success: 142 76% 45%;
+    --success-foreground: 142 76% 85%;
+    --success-hover: 142 76% 55%;
 
-    /* Error/Destructive Colors */
+    /* Warning Colors - Amarelo com melhor contraste para dark mode */
+    --warning: 38 92% 55%;
+    --warning-foreground: 38 92% 85%;
+    --warning-hover: 38 92% 65%;
+
+    /* Info Colors - Azul com melhor contraste para dark mode */
+    --info: 217 91% 55%;
+    --info-foreground: 217 91% 85%;
+    --info-hover: 217 91% 65%;
+
+    /* Error/Destructive Colors - Vermelho para erros e ações destrutivas (dark mode) */
     --error: 0 84% 60%;
-    --error-foreground: 210 40% 98%;
+    --error-foreground: 0 84% 85%;
     --error-hover: 0 72% 70%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 84% 85%;
 
     /* Muted Colors */
     --muted: 217 32% 17%;
@@ -232,8 +252,8 @@
     --border-hover: 217 32% 25%;
     --input: 217 33% 30%;
 
-    /* Ring (Focus) */
-    --ring: 239 84% 77%;
+    /* Ring (Focus) - Purple */
+    --ring: 258 90% 66%;
   }
 }
 
@@ -261,6 +281,10 @@
   --color-ring: hsl(var(--ring));
   --color-success: hsl(var(--success));
   --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
   --color-error: hsl(var(--error));
   --color-error-foreground: hsl(var(--error-foreground));
   --color-surface: hsl(var(--surface));

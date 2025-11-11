@@ -42,15 +42,31 @@ const config: StorybookConfig = {
         alias: {
           "@": uiPath,
           "@/lib": path.resolve(uiPath, "lib"),
+          "@/components": path.resolve(uiPath, "components"),
           "flowtomic/ui": uiPath,
           "flowtomic/logic": logicPath,
           "@flowtomic/logic": logicPath,
           "@flowtomic/ui": uiPath,
         },
         preserveSymlinks: false,
+        dedupe: ["react", "react-dom"],
       },
       optimizeDeps: {
-        include: ["react-resizable-panels", "@flowtomic/logic"],
+        include: ["react-resizable-panels"],
+        exclude: ["@flowtomic/logic", "flowtomic/logic"],
+        esbuildOptions: {
+          resolveExtensions: [".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
+        },
+      },
+      server: {
+        fs: {
+          allow: [rootDir],
+        },
+      },
+      build: {
+        commonjsOptions: {
+          include: [/node_modules/],
+        },
       },
       css: {
         postcss: {

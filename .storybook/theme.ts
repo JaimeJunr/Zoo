@@ -10,9 +10,9 @@ export default create({
 	brandImage: "/a_modern_minimalist_logo_for_flowtomic.jpeg",
 	brandTarget: "_self",
 
-	// Colors - Baseado no design system do Flowtomic
-	colorPrimary: "hsl(222.2, 47.4%, 11.2%)",
-	colorSecondary: "hsl(222.2, 47.4%, 11.2%)",
+	// Colors - Baseado no design system do Flowtomic (Purple)
+	colorPrimary: "hsl(262, 85%, 58%)",
+	colorSecondary: "hsl(258, 90%, 66%)",
 
 	// UI
 	appBg: "hsl(0, 0%, 100%)",
@@ -27,8 +27,8 @@ export default create({
 
 	// Toolbar default and active colors
 	barTextColor: "hsl(215.4, 16.3%, 46.9%)",
-	barSelectedColor: "hsl(222.2, 47.4%, 11.2%)",
-	barHoverColor: "hsl(222.2, 47.4%, 11.2%)",
+	barSelectedColor: "hsl(262, 85%, 58%)",
+	barHoverColor: "hsl(262, 85%, 58%)",
 	barBg: "hsl(0, 0%, 100%)",
 
 	// Form colors

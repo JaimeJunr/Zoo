@@ -54,6 +54,16 @@ export default {
           foreground: "hsl(var(--success-foreground))",
           hover: "hsl(var(--success-hover))",
         },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+          hover: "hsl(var(--warning-hover))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+          hover: "hsl(var(--info-hover))",
+        },
       },
     },
   },
