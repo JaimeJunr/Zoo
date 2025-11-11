@@ -4,8 +4,7 @@
  * Este é um exemplo de block que pode ser instalado via CLI
  */
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button, Card } from "@/components/atoms";
 
 export default function DashboardPage() {
   return (

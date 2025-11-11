@@ -7,7 +7,7 @@
  */
 
 import { cn } from "../../../lib/utils";
-import { Button } from "../../atoms/button/button";
+import { Button } from "../../atoms";
 
 export interface SocialLoginButtonsProps {
   /**

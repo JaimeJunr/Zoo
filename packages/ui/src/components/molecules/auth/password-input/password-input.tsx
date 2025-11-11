@@ -1,7 +1,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { inputVariants } from "../../../atoms/input/input";
+import { inputVariants } from "../../../atoms/forms/input/input";
 
 export interface PasswordInputProps {
   id: string;

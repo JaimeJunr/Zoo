@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type React from "react";
 import { useState } from "react";
-import { Button } from "../../atoms/button/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../../atoms/card/card";
-import { Resizable } from "./resizable";
+import { Button, Card, CardContent, CardHeader, CardTitle } from "../../atoms";
+import { ResizableLayout } from "./resizable-layout";
 
 const meta = {
-  title: "Flowtomic UI/Organisms/Resizable",
-  component: Resizable,
+  title: "Flowtomic UI/Organisms/ResizableLayout",
+  component: ResizableLayout,
   parameters: {
     layout: "fullscreen",
     docs: {
@@ -56,7 +56,7 @@ const meta = {
       description: "Chave para persistir o tamanho da sidebar no localStorage",
     },
   },
-} satisfies Meta<typeof Resizable>;
+} satisfies Meta<typeof ResizableLayout>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -64,14 +64,14 @@ type Story = StoryObj<typeof meta>;
 /**
  * Componente wrapper para gerenciar o estado do sidebar
  */
-function ResizableWrapper(
-  props: Omit<React.ComponentProps<typeof Resizable>, "sidebarOpen" | "setSidebarOpen">
+function ResizableLayoutWrapper(
+  props: Omit<React.ComponentProps<typeof ResizableLayout>, "sidebarOpen" | "setSidebarOpen">
 ) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
     <div className="h-screen w-screen">
-      <Resizable {...props} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <ResizableLayout {...props} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
     </div>
   );
 }
@@ -134,23 +134,23 @@ const ExampleContent = ({ title = "Conteúdo Principal" }: { title?: string }) =
 
 export const Default: Story = {
   render: () => (
-    <ResizableWrapper sidebar={<ExampleSidebar title="Sidebar Padrão" />} side="left">
+    <ResizableLayoutWrapper sidebar={<ExampleSidebar title="Sidebar Padrão" />} side="left">
       <ExampleContent title="Conteúdo Principal" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
 };
 
 export const SidebarRight: Story = {
   render: () => (
-    <ResizableWrapper sidebar={<ExampleSidebar title="Sidebar à Direita" />} side="right">
+    <ResizableLayoutWrapper sidebar={<ExampleSidebar title="Sidebar à Direita" />} side="right">
       <ExampleContent title="Conteúdo Principal" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
 };
 
 export const CustomSizes: Story = {
   render: () => (
-    <ResizableWrapper
+    <ResizableLayoutWrapper
       sidebar={<ExampleSidebar title="Sidebar Customizada" />}
       side="left"
       defaultSidebarPct={0.35}
@@ -159,20 +159,20 @@ export const CustomSizes: Story = {
       maxPxCap={400}
     >
       <ExampleContent title="Conteúdo com Sidebar Customizada" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
 };
 
 export const WithPersistence: Story = {
   render: () => (
-    <ResizableWrapper
+    <ResizableLayoutWrapper
       sidebar={<ExampleSidebar title="Sidebar Persistente" />}
       side="left"
       persistKey="storybook-resizable"
       defaultSidebarPct={0.3}
     >
       <ExampleContent title="Conteúdo com Persistência" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
   parameters: {
     docs: {
@@ -186,19 +186,19 @@ export const WithPersistence: Story = {
 
 export const ThickResizer: Story = {
   render: () => (
-    <ResizableWrapper
+    <ResizableLayoutWrapper
       sidebar={<ExampleSidebar title="Handle Espesso" />}
       side="left"
       resizerThicknessPx={16}
     >
       <ExampleContent title="Conteúdo com Handle Espesso" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
 };
 
 export const NarrowSidebar: Story = {
   render: () => (
-    <ResizableWrapper
+    <ResizableLayoutWrapper
       sidebar={<ExampleSidebar title="Sidebar Estreita" />}
       side="left"
       defaultSidebarPct={0.15}
@@ -206,13 +206,13 @@ export const NarrowSidebar: Story = {
       maxPct={0.3}
     >
       <ExampleContent title="Conteúdo com Sidebar Estreita" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
 };
 
 export const WideSidebar: Story = {
   render: () => (
-    <ResizableWrapper
+    <ResizableLayoutWrapper
       sidebar={<ExampleSidebar title="Sidebar Larga" />}
       side="left"
       defaultSidebarPct={0.5}
@@ -221,13 +221,13 @@ export const WideSidebar: Story = {
       maxPxCap={600}
     >
       <ExampleContent title="Conteúdo com Sidebar Larga" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
 };
 
 export const WithSnap: Story = {
   render: () => (
-    <ResizableWrapper
+    <ResizableLayoutWrapper
       sidebar={<ExampleSidebar title="Sidebar com Snap" />}
       side="left"
       defaultSidebarPct={0.25}
@@ -235,7 +235,7 @@ export const WithSnap: Story = {
       snapThreshold={50}
     >
       <ExampleContent title="Conteúdo com Snap Automático" />
-    </ResizableWrapper>
+    </ResizableLayoutWrapper>
   ),
   parameters: {
     docs: {

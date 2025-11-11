@@ -6,7 +6,7 @@ const sampleStats = [
     id: "1",
     title: "Receita Total",
     value: 122380,
-    delta: 15.1,
+    // delta calculado automaticamente: ((122380 - 105922) / 105922) * 100 = +15.5%
     lastMonth: 105922,
     prefix: "R$ ",
     color: "blue" as const,
@@ -15,7 +15,7 @@ const sampleStats = [
     id: "2",
     title: "Usuários Ativos",
     value: 85000,
-    delta: -8.5,
+    // delta calculado automaticamente: ((85000 - 92890) / 92890) * 100 = -8.5%
     lastMonth: 92890,
     color: "green" as const,
   },
@@ -23,17 +23,17 @@ const sampleStats = [
     id: "3",
     title: "Pedidos",
     value: 2500,
-    delta: 12.3,
+    // delta calculado automaticamente: ((2500 - 2228) / 2228) * 100 = +12.2%
     lastMonth: 2228,
     color: "orange" as const,
   },
   {
     id: "4",
     title: "Taxa de Conversão",
-    value: 3.2,
+    value: 50,
     suffix: "%",
-    delta: 0.5,
-    lastMonth: 2.7,
+    // delta calculado automaticamente: ((50 - 28) / 28) * 100 = +78.6%
+    lastMonth: 28,
     color: "purple" as const,
   },
 ];
@@ -81,6 +81,23 @@ export const Loading: Story = {
   },
 };
 
+export const LoadingWithCount: Story = {
+  args: {
+    stats: [],
+    layout: "grid",
+    loading: true,
+    skeletonCount: 4,
+  },
+};
+
+export const LoadingWithStatsLength: Story = {
+  args: {
+    stats: sampleStats,
+    layout: "grid",
+    loading: true,
+  },
+};
+
 export const CustomColumns: Story = {
   args: {
     stats: sampleStats,
@@ -113,6 +130,37 @@ export const SingleColumn: Story = {
       sm: 1,
       md: 1,
       lg: 1,
+    },
+  },
+};
+
+export const AutoCalculatedDelta: Story = {
+  args: {
+    stats: [
+      {
+        id: "1",
+        title: "Taxa de Conversão",
+        value: 50,
+        suffix: "%",
+        lastMonth: 28, // delta calculado automaticamente: +78.6%
+        color: "purple" as const,
+      },
+      {
+        id: "2",
+        title: "Taxa de Engajamento",
+        value: 75,
+        suffix: "%",
+        lastMonth: 60, // delta calculado automaticamente: +25.0%
+        color: "green" as const,
+      },
+    ],
+    layout: "grid",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Exemplo demonstrando cálculo automático do delta quando apenas `value` e `lastMonth` são fornecidos. O delta é calculado automaticamente pelo hook useStatCard.",
+      },
     },
   },
 };

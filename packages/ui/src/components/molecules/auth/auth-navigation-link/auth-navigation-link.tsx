@@ -8,7 +8,7 @@
  */
 
 import type React from "react";
-import { AnimatedShinyText } from "../../../atoms/typography/animated-shiny-text";
+import { AnimatedShinyText } from "../../typography/animated-shiny-text";
 
 export interface AuthNavigationLinkProps {
   /**

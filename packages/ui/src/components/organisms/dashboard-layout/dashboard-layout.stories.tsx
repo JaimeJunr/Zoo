@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "../../atoms/button/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../../atoms/card/card";
+import { Button, Card, CardContent, CardHeader, CardTitle } from "../../atoms";
 import { DashboardLayout } from "./dashboard-layout";
 
 const meta = {

@@ -8,7 +8,7 @@
 import { RefreshCw, Save, Settings } from "lucide-react";
 import React from "react";
 import { cn } from "../../../lib/utils";
-import { Button } from "../../atoms/button/button";
+import { Button } from "../../atoms";
 import { ButtonGroup } from "../../molecules/button-group/button-group";
 
 export interface DashboardHeaderActionsProps {

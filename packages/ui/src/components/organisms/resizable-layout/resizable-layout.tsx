@@ -1,13 +1,13 @@
 "use client";
 
+import { useResizable } from "@flowtomic/logic";
 import { GripVertical } from "lucide-react";
 import type React from "react";
 import { useEffect, useState } from "react";
 import * as ResizablePrimitive from "react-resizable-panels";
-import { useResizable } from "@flowtomic/logic";
 import { cn } from "@/lib/utils";
 
-export interface ResizableProps {
+export interface ResizableLayoutProps {
   sidebar: React.ReactNode;
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
@@ -27,12 +27,12 @@ export interface ResizableProps {
 }
 
 /**
- * Resizable - Componente Visual
+ * ResizableLayout - Componente Visual
  *
  * Componente de apresentação que usa o hook headless useResizable.
  * Responsável apenas por renderizar o markup e aplicar estilos.
  */
-export const Resizable: React.FC<ResizableProps> = ({
+export const ResizableLayout: React.FC<ResizableLayoutProps> = ({
   sidebar,
   sidebarOpen,
   setSidebarOpen,
@@ -214,5 +214,5 @@ export const Resizable: React.FC<ResizableProps> = ({
 };
 
 // Alias para compatibilidade com código existente
-export const ResizableSplit = Resizable;
-export type ResizableSplitProps = ResizableProps;
+export const ResizableSplit = ResizableLayout;
+export type ResizableSplitProps = ResizableLayoutProps;

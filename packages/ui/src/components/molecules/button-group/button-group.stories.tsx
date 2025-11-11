@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "../../atoms/button/button";
+import { Button } from "../../atoms";
 import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "./button-group";
 
 const meta = {

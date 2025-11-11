@@ -5,7 +5,7 @@
  * Este componente adiciona markup e styles ao hook Headless
  */
 
-import { type StatCardData, useStatCard } from "flowtomic/logic/hooks/useStatCard/useStatCard";
+import { type StatCardData, useStatCard } from "flowtomic/logic";
 import {
   ArrowDown,
   ArrowUp,
@@ -194,9 +194,11 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
 
     // Ícone de tendência
     const getTrendIcon = () => {
-      if (computedDelta === undefined && !trendPercentage) {
+      // Se não há delta calculado e não há trendPercentage, mostra ícone neutro
+      if (computedDelta === undefined && !trendPercentage && statCardData.trend.delta === 0) {
         return <Minus className="h-4 w-4 text-muted-foreground" />;
       }
+      // Usa a direção calculada pelo hook (que pode ter sido calculada automaticamente)
       return statCardData.trend.direction === "up" ? (
         <ArrowUp className="h-4 w-4 text-success" />
       ) : statCardData.trend.direction === "down" ? (
@@ -216,15 +218,15 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
         )}
         {...props}
       >
-        <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-6 border-0">
-          <div className="space-y-1">
-            <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+        <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-4 sm:pb-6 border-0">
+          <div className="space-y-1 flex-1 min-w-0 pr-2">
+            <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wide truncate">
               {title}
             </CardTitle>
           </div>
-          <div className="flex items-center gap-2">
-            <div className={cn("p-2 rounded-lg bg-opacity-5", accentColors[color])}>
-              <ArrowUpRight className={cn("h-4 w-4", accentColors[color])} />
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className={cn("p-1.5 sm:p-2 rounded-lg bg-opacity-5", accentColors[color])}>
+              <ArrowUpRight className={cn("h-3.5 w-3.5 sm:h-4 sm:w-4", accentColors[color])} />
             </div>
             {showActions && (
               <DropdownMenu>
@@ -277,19 +279,19 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
           </div>
         </CardHeader>
         <CardContent className="space-y-2.5">
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2.5">
             <span
               className={cn(
-                "text-2xl font-medium text-foreground tracking-tight",
+                "text-xl sm:text-2xl font-medium text-foreground tracking-tight break-words",
                 accentColors[color]
               )}
             >
               {displayValue}
             </span>
-            {(computedDelta !== undefined || trendPercentage) && (
+            {(computedDelta !== undefined || trendPercentage || statCardData.trend.delta > 0) && (
               <Badge
                 variant={statCardData.trend.variant}
-                className="text-xs font-semibold inline-flex items-center gap-1"
+                className="text-xs font-semibold inline-flex items-center gap-1 w-fit"
               >
                 {getTrendIcon()}
                 {trendPercentage || statCardData.trend.percentage}
@@ -297,12 +299,16 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
             )}
           </div>
           {subtitle && (
-            <p className="text-sm text-muted-foreground leading-relaxed pt-1">{subtitle}</p>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-1 break-words">
+              {subtitle}
+            </p>
           )}
           {statCardData.formattedLastMonth && (
-            <div className="text-xs text-muted-foreground mt-2 border-t border-border pt-2.5">
-              Vs último mês:{" "}
-              <span className="font-medium text-foreground">{statCardData.formattedLastMonth}</span>
+            <div className="text-xs text-muted-foreground mt-2 border-t border-border pt-2 sm:pt-2.5">
+              <span className="break-words">
+                Vs último mês:{" "}
+                <span className="font-medium text-foreground">{statCardData.formattedLastMonth}</span>
+              </span>
             </div>
           )}
           {children && <div className="mt-4 pt-4 border-t border-border">{children}</div>}

@@ -8,7 +8,9 @@
 
 import type React from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "../../../lib/utils";
+import { useAnimatedIndicator } from "@flowtomic/logic";
 
 type IconComponentType = React.ElementType<{ className?: string }>;
 
@@ -72,11 +74,12 @@ export const MenuDock: React.FC<MenuDockProps> = ({
     }
     onActiveIndexChange?.(index);
   };
-  const [underlineWidth, setUnderlineWidth] = useState(0);
-  const [underlineLeft, setUnderlineLeft] = useState(0);
 
+  const containerRef = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Para o underline, precisamos rastrear o texto, não o botão
   const textRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     if (activeIndex >= finalItems.length && !isControlled) {
@@ -84,29 +87,15 @@ export const MenuDock: React.FC<MenuDockProps> = ({
     }
   }, [finalItems, activeIndex, isControlled]);
 
-  useEffect(() => {
-    const updateUnderline = () => {
-      const activeButton = itemRefs.current[activeIndex];
-      const activeText = textRefs.current[activeIndex];
-
-      if (activeButton && activeText && showLabels && orientation === "horizontal") {
-        const buttonRect = activeButton.getBoundingClientRect();
-        const textRect = activeText.getBoundingClientRect();
-        const containerRect = activeButton.parentElement?.getBoundingClientRect();
-
-        if (containerRect) {
-          setUnderlineWidth(textRect.width);
-          setUnderlineLeft(
-            buttonRect.left - containerRect.left + (buttonRect.width - textRect.width) / 2
-          );
-        }
-      }
-    };
-
-    updateUnderline();
-    window.addEventListener("resize", updateUnderline);
-    return () => window.removeEventListener("resize", updateUnderline);
-  }, [activeIndex, showLabels, orientation]);
+  // Usar o hook apenas quando showLabels e horizontal
+  const { indicatorStyle, registerElement } = useAnimatedIndicator({
+    containerRef: containerRef as React.RefObject<HTMLElement>,
+    activeSelector: '[data-active="true"]',
+    getElementValue: (element) => {
+      return element.getAttribute("data-index") || "";
+    },
+    updateOnResize: showLabels && orientation === "horizontal",
+  });
 
   const sizeClasses = {
     default: "p-3",
@@ -122,6 +111,7 @@ export const MenuDock: React.FC<MenuDockProps> = ({
 
   return (
     <nav
+      ref={containerRef}
       className={cn(
         "relative flex",
         orientation === "horizontal" ? "flex-row" : "flex-col",
@@ -140,9 +130,8 @@ export const MenuDock: React.FC<MenuDockProps> = ({
           <button
             type="button"
             key={item.id || `menu-item-${index}`}
-            ref={(el) => {
-              itemRefs.current[index] = el;
-            }}
+            data-active={isActive}
+            data-index={index.toString()}
             onClick={() => {
               setActiveIndex(index);
               item.onClick?.();
@@ -163,7 +152,12 @@ export const MenuDock: React.FC<MenuDockProps> = ({
               <span
                 ref={(el) => {
                   textRefs.current[index] = el;
+                  if (showLabels && orientation === "horizontal" && el) {
+                    registerElement(el, index.toString());
+                  }
                 }}
+                data-active={isActive}
+                data-index={index.toString()}
                 className={cn(
                   "text-sm font-medium",
                   "transition-all duration-200",
@@ -178,14 +172,31 @@ export const MenuDock: React.FC<MenuDockProps> = ({
       })}
 
       {showLabels && orientation === "horizontal" && (
-        <div
-          className={cn(
-            "absolute bottom-0 h-0.5 bg-primary transition-all duration-300",
-            animated && "ease-out"
-          )}
+        <motion.div
+          className="absolute bottom-0 h-0.5 bg-primary"
+          initial={false}
+          animate={
+            shouldReduceMotion
+              ? {
+                  opacity: indicatorStyle.opacity,
+                }
+              : {
+                  x: indicatorStyle.left,
+                  width: indicatorStyle.width,
+                  opacity: indicatorStyle.opacity,
+                }
+          }
+          transition={{
+            type: "spring",
+            stiffness: 380,
+            damping: 30,
+            mass: 0.5,
+          }}
           style={{
-            width: `${underlineWidth}px`,
-            left: `${underlineLeft}px`,
+            pointerEvents: "none",
+            left: 0,
+            bottom: 0,
+            height: "2px",
           }}
         />
       )}
